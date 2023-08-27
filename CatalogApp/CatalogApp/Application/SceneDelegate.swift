@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
-        let viewController = MockViewController()
+        let viewController = HomeModuleBuilder.build()
         let navigationController = UINavigationController(rootViewController: viewController)
         
         window?.rootViewController = navigationController
@@ -24,4 +24,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
     }
 }
-
