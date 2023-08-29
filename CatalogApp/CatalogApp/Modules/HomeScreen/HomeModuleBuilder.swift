@@ -9,9 +9,13 @@ import UIKit
 
 final class HomeModuleBuilder {
     static func build() -> HomeViewController {
-        let interactor = HomeInteractor()
+        
+        let networkClient = NetworkClient()
+        let messageService = MessageService()
+        
+        let interactor = HomeInteractor(networkClient: networkClient)
         let router = HomeRouter()
-        let presenter = HomePresenter(router: router, interactor: interactor)
+        let presenter = HomePresenter(router: router, interactor: interactor, messageService: messageService)
         let viewController = HomeViewController()
         
         interactor.presenter = presenter
