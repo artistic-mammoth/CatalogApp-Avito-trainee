@@ -25,4 +25,5 @@ struct CatalogItemData {
 
 protocol CatalogCellProtocol {
     func configureWith(data: CatalogItemData)
+    func showPlaceholderCell()
 }

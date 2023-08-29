@@ -56,6 +56,8 @@ class CatalogCellView: CatalogCell {
         return $0
     }(CellMessage())
     
+    private var catalogCellPlaceholder: CatalogCellPlaceholder?
+    
     // MARK: - Init
     @available (*, unavailable)
     required init?(coder: NSCoder) { nil }
@@ -109,8 +111,12 @@ class CatalogCellView: CatalogCell {
             createdDateLabel.text = formattedDate
         } else {
             imageView.image = nil
-            showPlaceholder(with: "Невозможно загрузить товар")
+            showPlaceholder(messange: "Невозможно загрузить товар")
         }
+    }
+    
+    func showPlaceholderCell() {
+        showPlaceholder()
     }
 }
 
@@ -121,6 +127,7 @@ private extension CatalogCellView {
         
         backgroundColor = Config.backgroundColor
         clipsToBounds = true
+        messageView.isHidden = true
         
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: topAnchor),
@@ -151,13 +158,33 @@ private extension CatalogCellView {
         ])
     }
     
-    func showPlaceholder(with messange: String) {
-        messageView.showErrorMessange(messange: messange)
-        isUserInteractionEnabled = false
-        messageView.isHidden = false
+    func showPlaceholder(messange: String? = nil) {
+        if let messange = messange {
+            messageView.showErrorMessange(messange: messange)
+            isUserInteractionEnabled = false
+            messageView.isHidden = false
+            catalogCellPlaceholder?.removeFromSuperview()
+            catalogCellPlaceholder = nil
+            return
+        }
+        
+        messageView.isHidden = true
+        catalogCellPlaceholder = CatalogCellPlaceholder()
+        if let catalogCellPlaceholder = catalogCellPlaceholder {
+            addViews(catalogCellPlaceholder)
+            
+            NSLayoutConstraint.activate([
+                catalogCellPlaceholder.topAnchor.constraint(equalTo: topAnchor),
+                catalogCellPlaceholder.bottomAnchor.constraint(equalTo: bottomAnchor),
+                catalogCellPlaceholder.leadingAnchor.constraint(equalTo: leadingAnchor),
+                catalogCellPlaceholder.trailingAnchor.constraint(equalTo: trailingAnchor),
+            ])
+        }
     }
     
     func hidePlaceholder() {
+        catalogCellPlaceholder?.removeFromSuperview()
+        catalogCellPlaceholder = nil
         isUserInteractionEnabled = true
         messageView.isHidden = true
     }

@@ -7,7 +7,7 @@
 
 enum CatalogEndpoints {
     case mainPageInfo
-    case productDetails(id: Int)
+    case productDetails(id: String)
 }
 
 // MARK: - EndpointComponentProtocol

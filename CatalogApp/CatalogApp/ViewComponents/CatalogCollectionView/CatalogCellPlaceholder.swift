@@ -7,10 +7,7 @@
 
 import UIKit
 
-class CatalogCellPlaceholder: UICollectionViewCell {
-    // MARK: - Public properties
-    static let reuseIdentifier = "CatalogCellPlaceholder"
-    
+class CatalogCellPlaceholder: UIView {
     // MARK: - Views
     private lazy var imageView = ShimmerView()
     private lazy var titleLabel = ShimmerView()

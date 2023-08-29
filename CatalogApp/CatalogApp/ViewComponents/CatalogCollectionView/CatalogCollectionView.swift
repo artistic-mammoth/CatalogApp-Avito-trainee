@@ -75,12 +75,12 @@ extension CatalogCollectionView: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CatalogCellView.reuseIdentifier, for: indexPath) as? CatalogCellView else { fatalError("Cannot get cell of type CatalogCellView") }
+        
         if isLoading {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CatalogCellPlaceholder.reuseIdentifier, for: indexPath) as? CatalogCellPlaceholder else { fatalError("Cannot get cell of type CatalogCellPlaceholder") }
+            cell.showPlaceholderCell()
             return cell
         }
-        
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CatalogCellView.reuseIdentifier, for: indexPath) as? CatalogCellView else { fatalError("Cannot get cell of type CatalogCellView") }
         
         let item = dataModel[indexPath.section].items[indexPath.row]
         
@@ -132,7 +132,6 @@ private extension CatalogCollectionView {
         collectionView.delegate = self
         
         collectionView.register(CatalogCellView.self, forCellWithReuseIdentifier: CatalogCellView.reuseIdentifier)
-        collectionView.register(CatalogCellPlaceholder.self, forCellWithReuseIdentifier: CatalogCellPlaceholder.reuseIdentifier)
         
         refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
         collectionView.alwaysBounceVertical = true

@@ -40,8 +40,8 @@ extension HomePresenter: HomePresenterProtocol {
     }
     
     func handleError(_ error: NetworkError) {
-        messageService.showErrorMessage(with: .noInternetConnection) {
-            self.interactor.loadMainPageData()
+        messageService.showErrorMessage(with: .noInternetConnection) { [weak self] in
+            self?.interactor.loadMainPageData()
         }
     }
     
