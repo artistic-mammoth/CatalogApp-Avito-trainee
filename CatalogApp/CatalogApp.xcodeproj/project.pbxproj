@@ -59,6 +59,7 @@
 		C76BF5442A9A1C0C004CF08B /* ConverterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76BF5432A9A1C0C004CF08B /* ConverterProtocol.swift */; };
 		C7B2000C2A9B76E100EE11A0 /* CatalogEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B2000B2A9B76E100EE11A0 /* CatalogEndpoints.swift */; };
 		C7B2000E2A9B80ED00EE11A0 /* EndpointComponentProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B2000D2A9B80ED00EE11A0 /* EndpointComponentProtocol.swift */; };
+		C7DF93362A9F70A7005C2892 /* ImageRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DF93352A9F70A7005C2892 /* ImageRes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +117,7 @@
 		C76BF5432A9A1C0C004CF08B /* ConverterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterProtocol.swift; sourceTree = "<group>"; };
 		C7B2000B2A9B76E100EE11A0 /* CatalogEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogEndpoints.swift; sourceTree = "<group>"; };
 		C7B2000D2A9B80ED00EE11A0 /* EndpointComponentProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointComponentProtocol.swift; sourceTree = "<group>"; };
+		C7DF93352A9F70A7005C2892 /* ImageRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +327,7 @@
 				C7228D312A98D38700D19B07 /* Assets.xcassets */,
 				C7B2000B2A9B76E100EE11A0 /* CatalogEndpoints.swift */,
 				C70105262A9CD36F00E1D406 /* FontsRes.swift */,
+				C7DF93352A9F70A7005C2892 /* ImageRes.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				C71BD8B02A9E82B300B1971A /* ContactViewController.swift in Sources */,
 				C71BD8A52A9E650300B1971A /* ProductModuleBuilder.swift in Sources */,
 				C71A9ADB2A98D8D900467E80 /* HomeViewController.swift in Sources */,
+				C7DF93362A9F70A7005C2892 /* ImageRes.swift in Sources */,
 				C71A9AE72A98E28500467E80 /* NetworkClient.swift in Sources */,
 				C71BD8B22A9E8F2800B1971A /* ProductPlaceholderView.swift in Sources */,
 				C70105202A9CC0D000E1D406 /* LazyImageView.swift in Sources */,

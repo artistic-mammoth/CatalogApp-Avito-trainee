@@ -51,9 +51,7 @@ final class CellMessage: UIView {
     private func setupView() {
         addViews(messangeLabel, imageLogoView)
         
-        imageLogo = UIImage(systemName: "megaphone.fill")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal).applyingSymbolConfiguration(.init(font: .boldHelveticaNeue(size: 30), scale: .large))
-        
-        imageLogoView.image = imageLogo
+        imageLogoView.image = .placeholderMegaphone
         
         NSLayoutConstraint.activate([
             messangeLabel.leadingAnchor.constraint(equalTo: leadingAnchor),

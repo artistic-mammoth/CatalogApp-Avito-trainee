@@ -27,7 +27,7 @@ final class LazyImageView: UIImageView {
     
     // MARK: - Private properties
     private var placeholderView: UIImageView = {
-        $0.image = UIImage(systemName: "megaphone.fill")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal).applyingSymbolConfiguration(.init(font: .boldHelveticaNeue(size: 30), scale: .large))
+        $0.image = .placeholderMegaphone
         return $0
     }(UIImageView())
     
@@ -49,7 +49,11 @@ final class LazyImageView: UIImageView {
     func fetchImage(from imageURL: String, errorHandler: ((ImageFetchError?) -> ())? = nil) {
         showPlaceholder()
         
-        guard let url = URL(string: imageURL) else { errorHandler?(.badURL); return }
+        guard let url = URL(string: imageURL) else {
+            showPlaceholder(withError: true)
+            errorHandler?(.badURL)
+            return
+        }
         
         if let cachedImage = LazyImageView.imageCache.object(forKey: imageURL as NSString) {
             hidePlaceholder()
@@ -58,9 +62,12 @@ final class LazyImageView: UIImageView {
         }
         
         let handler: (Data?, URLResponse?, Error?) -> Void = { [weak self] data, response, error in
-            guard let self = self, let data = data, error == nil else {
-                // FIXME: - fix canceled task
-                //                errorHandler?(.noImage)
+            guard let self = self else { return }
+            
+            guard let data = data, error == nil else {
+                DispatchQueue.main.async {
+                    self.showPlaceholder(withError: true)
+                }
                 return
             }
             
@@ -71,7 +78,10 @@ final class LazyImageView: UIImageView {
                     self.image = imageFromData
                 }
             } else {
-                errorHandler?(.noImage)
+                DispatchQueue.main.async {
+                    self.showPlaceholder(withError: true)
+                    errorHandler?(.noImage)
+                }
             }
         }
         
@@ -84,9 +94,10 @@ final class LazyImageView: UIImageView {
 
 // MARK: - Private extension
 private extension LazyImageView {
-    private func showPlaceholder() {
+    private func showPlaceholder(withError: Bool = false) {
         task?.cancel()
         image = nil
+        placeholderView.image = withError ? .placeholderError : .placeholderMegaphone
         placeholderView.isHidden = false
         backgroundColor = .systemGray5
     }
