@@ -13,9 +13,18 @@ final class ContactViewController: UIViewController {
     private var isHiding: Bool = true
     
     // MARK: - Views
+    let contactLabel: UILabel = {
+        $0.textColor = .label
+        $0.font = .boldHelveticaNeue(size: 25)
+        $0.numberOfLines = 0
+        $0.text = "Контакты:"
+        $0.textAlignment = .left
+        return $0
+    }(UILabel())
+    
     let phoneLabel: UILabel = {
         $0.textColor = .label
-        $0.font = .boldHelveticaNeue(size: 21)
+        $0.font = .mediumHelveticaNeue(size: 21)
         $0.numberOfLines = 0
         $0.textAlignment = .left
         return $0
@@ -25,13 +34,13 @@ final class ContactViewController: UIViewController {
         $0.backgroundColor = .systemGreen
         $0.layer.cornerRadius = 11
         $0.setTitleColor(.black, for: .normal)
-        $0.titleLabel?.font = .boldHelveticaNeue(size: 17)
+        $0.titleLabel?.font = .mediumHelveticaNeue(size: 17)
         return $0
     }(UIButton())
     
     let emailLabel: UILabel = {
         $0.textColor = .label
-        $0.font = .boldHelveticaNeue(size: 21)
+        $0.font = .mediumHelveticaNeue(size: 21)
         $0.numberOfLines = 0
         $0.textAlignment = .left
         return $0
@@ -54,7 +63,7 @@ final class ContactViewController: UIViewController {
 // MARK: - Private extension
 private extension ContactViewController {
     func setupView() {
-        view.addViews(phoneLabel, phoneButton, emailLabel)
+        view.addViews(contactLabel, phoneLabel, phoneButton, emailLabel)
         view.backgroundColor = .systemBackground
         
         phoneButton.addTarget(self, action: #selector(handlePhoneButton), for: .touchUpInside)
@@ -63,12 +72,21 @@ private extension ContactViewController {
         phoneLabel.isUserInteractionEnabled = true
         phoneLabel.addGestureRecognizer(tap)
         
+        if #available(iOS 15.0, *) {
+            contactLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 35).isActive = true
+        } else {
+            contactLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -35).isActive = true
+        }
+        
         NSLayoutConstraint.activate([
-            phoneLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
+            contactLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            contactLabel.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: 20),
+            
+            phoneLabel.topAnchor.constraint(equalTo: contactLabel.bottomAnchor, constant: 20),
             phoneLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             phoneLabel.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: 20),
             
-            phoneButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
+            phoneButton.topAnchor.constraint(equalTo: phoneLabel.topAnchor),
             phoneButton.leadingAnchor.constraint(equalTo: phoneLabel.trailingAnchor, constant: 10),
             phoneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
@@ -84,7 +102,7 @@ private extension ContactViewController {
             phoneButton.setTitle("Скрыть", for: .normal)
             phoneLabel.textColor = .systemBlue
             phoneLabel.attributedText = NSAttributedString(string: phone, attributes:
-                [.underlineStyle: NSUnderlineStyle.single.rawValue])
+                                                            [.underlineStyle: NSUnderlineStyle.single.rawValue])
             isHiding = false
         } else {
             hidePhoneNumber()

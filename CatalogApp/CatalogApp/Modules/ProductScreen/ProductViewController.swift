@@ -101,7 +101,6 @@ final class ProductViewController: UIViewController {
         return $0
     }(UITextView())
     
-    private lazy var contactViewController = ContactViewController()
     private var productPlaceholderView: ProductPlaceholderView?
     
     // MARK: - Lifecycle
@@ -135,8 +134,6 @@ extension ProductViewController: ProductViewProtocol {
         
         createdDateLabel.text = formattedDate
         descriptionTextView.text = data.description
-        
-        contactViewController.configureWith(phoneNumber: data.phoneNumber, email: data.email)
     }
 }
 
@@ -154,7 +151,7 @@ private extension ProductViewController {
         setupNavBar()
         showPlaceholder()
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(openContactView))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(contactButtonDidTap))
         contactView.addGestureRecognizer(tap)
         
         NSLayoutConstraint.activate([
@@ -218,24 +215,8 @@ private extension ProductViewController {
     }
     
     @objc
-    func openContactView() {
-        // TODO: - Add bottom sheet
-//        if #available(iOS 15.0, *) {
-//            if let sheetController = contactVC.sheetPresentationController {
-//                if #available(iOS 16.0, *) {
-//                    sheetController.detents = [.custom(resolver: { context in
-//                        0.2 * context.maximumDetentValue
-//                    })]
-//                } else {
-//                    sheetController.detents = [.medium()]
-//                }
-//                sheetController.preferredCornerRadius = 30
-//                sheetController.prefersGrabberVisible = true
-//            }
-//            present(contactVC, animated: true)
-//        } else {
-            present(contactViewController, animated: true)
-//        }
+    func contactButtonDidTap() {
+        presenter?.contactButtonDidTap()
     }
     
     func showPlaceholder() {
@@ -249,7 +230,6 @@ private extension ProductViewController {
                 productPlaceholderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 productPlaceholderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             ])
-            
         }
     }
     

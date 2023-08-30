@@ -16,6 +16,7 @@ final class ProductPresenter {
     // MARK: - Private properties
     private let messageService: MessageServiceProtocol
     private let productId: String
+    private var productData: ProductData?
     
     // MARK: - Init
     init(router: ProductRouterProtocol, interactor: ProductInteractorProtocol, messageService: MessageServiceProtocol, productId: String) {
@@ -55,6 +56,7 @@ extension ProductPresenter: ProductPresenterProtocol {
                                           location: location,
                                           address: address)
             
+            self.productData = productData
             view?.updateWith(productData)
             
         } else {
@@ -67,5 +69,10 @@ extension ProductPresenter: ProductPresenterProtocol {
             guard let self = self else { return }
             self.interactor.loadProductData(for: self.productId)
         }
+    }
+    
+    func contactButtonDidTap() {
+        guard let data = productData else { return }
+        router.openContactView(phone: data.phoneNumber, email: data.email)
     }
 }

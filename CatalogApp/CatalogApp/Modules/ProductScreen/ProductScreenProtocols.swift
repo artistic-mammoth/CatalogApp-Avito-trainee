@@ -13,6 +13,7 @@ protocol ProductPresenterProtocol: AnyObject {
     func viewDidLoaded()
     func ProductDataDidLoaded(data: ProductDetailsResponse)
     func handleError(_ error: NetworkError)
+    func contactButtonDidTap()
 }
 
 protocol ProductInteractorProtocol: AnyObject {
@@ -20,5 +21,5 @@ protocol ProductInteractorProtocol: AnyObject {
 }
 
 protocol ProductRouterProtocol: AnyObject {
-    
+    func openContactView(phone: String, email: String)
 }
