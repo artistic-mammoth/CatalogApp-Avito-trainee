@@ -31,7 +31,14 @@
   <img src="./Screenshots/Screenshot_7.png" width="200">
 </p>
 
-## Инструкция по запуску:
+## Инструкция по установке:
+1. Склонировать репозиторий:
+
+```bash
+git clone https://github.com/artistic-mammoth/CatalogApp-Avito-trainee.git
+```
+
+2. Открыть проект в Xcode ./CatalogApp/CatalogApp.xcodeproj
+
+## Требования:
 - Версия Xcode 14.2 и выше
-- Склонировать репозиторий
-- Запустить ./CatalogApp/CatalogApp.xcodeproj
