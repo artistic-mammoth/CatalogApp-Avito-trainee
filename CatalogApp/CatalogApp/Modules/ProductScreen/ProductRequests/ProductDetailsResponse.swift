@@ -5,10 +5,13 @@
 //  Created by Михайлов Александр on 29.08.2023.
 //
 
+import Foundation
+
 struct ProductDetailsResponse: Codable {
     let id, title, price, location: String?
     let imageURL: String?
-    let createdDate, description, email, phoneNumber: String?
+    let createdDate: Date?
+    let description, email, phoneNumber: String?
     let address: String?
 
     enum CodingKeys: String, CodingKey {

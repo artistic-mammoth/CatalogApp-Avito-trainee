@@ -28,13 +28,12 @@ final class HomePresenter {
 extension HomePresenter: HomePresenterProtocol {
     func mainPageDataDidLoaded(data: [Advertisement]) {
         let sectionData: [CatalogItemData] = data.map({ item in
-            let createdDate = Date(item.createdDate ?? "", format: "yyyy-MM-dd")
-            return CatalogItemData(id: item.id,
-                                   title: item.title,
-                                   imageURL: item.imageURL,
-                                   price: item.price,
-                                   location: item.location,
-                                   createdDate: createdDate)
+            CatalogItemData(id: item.id,
+                            title: item.title,
+                            imageURL: item.imageURL,
+                            price: item.price,
+                            location: item.location,
+                            createdDate: item.createdDate)
         })
         view?.updateCollectionDataWith([CatalogSections(items: sectionData)])
     }

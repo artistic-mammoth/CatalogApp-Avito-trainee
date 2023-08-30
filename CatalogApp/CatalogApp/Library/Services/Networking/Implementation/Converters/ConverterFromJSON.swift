@@ -9,6 +9,10 @@ import Foundation
 
 final class ConverterFromJSON: ConverterProtocol {
     func decode<T>(from data: Data) -> T?  where T: Codable {
-        try? JSONDecoder().decode(T.self, from: data)
+        let decoder = JSONDecoder()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
+        return try? decoder.decode(T.self, from: data)
     }
 }

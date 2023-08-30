@@ -14,7 +14,7 @@ struct AdvertisementsResponse: Codable {
 struct Advertisement: Codable {
     let id, title, price, location: String?
     let imageURL: String?
-    let createdDate: String?
+    let createdDate: Date?
     
     enum CodingKeys: String, CodingKey {
         case id, title, price, location

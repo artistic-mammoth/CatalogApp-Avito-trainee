@@ -41,7 +41,7 @@ extension ProductPresenter: ProductPresenterProtocol {
            let description = data.description,
            let email = data.email,
            let phoneNumber = data.phoneNumber,
-           let createdDate = Date(data.createdDate ?? "", format: "yyyy-MM-dd"),
+           let createdDate = data.createdDate,
            let location = data.location,
            let address = data.address {
             
