@@ -59,6 +59,10 @@ private extension ContactViewController {
         
         phoneButton.addTarget(self, action: #selector(handlePhoneButton), for: .touchUpInside)
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(callPhone))
+        phoneLabel.isUserInteractionEnabled = true
+        phoneLabel.addGestureRecognizer(tap)
+        
         NSLayoutConstraint.activate([
             phoneLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
             phoneLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -77,8 +81,10 @@ private extension ContactViewController {
     @objc
     func handlePhoneButton() {
         if isHiding {
-            phoneLabel.text = phone
             phoneButton.setTitle("Скрыть", for: .normal)
+            phoneLabel.textColor = .systemBlue
+            phoneLabel.attributedText = NSAttributedString(string: phone, attributes:
+                [.underlineStyle: NSUnderlineStyle.single.rawValue])
             isHiding = false
         } else {
             hidePhoneNumber()
@@ -88,7 +94,17 @@ private extension ContactViewController {
     func hidePhoneNumber() {
         phoneButton.setTitle("Показать", for: .normal)
         let hidingNumber = phone.dropLast(7).description + "**-****"
-        phoneLabel.text = hidingNumber
+        phoneLabel.textColor = .label
+        phoneLabel.attributedText = NSAttributedString(string: hidingNumber, attributes: [:])
         isHiding = true
+    }
+    
+    @objc
+    func callPhone() {
+        guard !isHiding else { return }
+        let number = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression, range: nil)
+        if let url = URL(string: "telprompt://\(number)"), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
     }
 }
