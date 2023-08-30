@@ -47,7 +47,6 @@
 		C7228D2B2A98D38600D19B07 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7228D2A2A98D38600D19B07 /* SceneDelegate.swift */; };
 		C7228D322A98D38700D19B07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7228D312A98D38700D19B07 /* Assets.xcassets */; };
 		C7228D352A98D38700D19B07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7228D332A98D38700D19B07 /* LaunchScreen.storyboard */; };
-		C7228D402A98D41300D19B07 /* MockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7228D3F2A98D41300D19B07 /* MockViewController.swift */; };
 		C734E49E2A9922890021328C /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C734E49D2A9922880021328C /* HTTPMethod.swift */; };
 		C734E4A02A99232A0021328C /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C734E49F2A99232A0021328C /* NetworkError.swift */; };
 		C734E4A22A9932A10021328C /* NetworkRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C734E4A12A9932A10021328C /* NetworkRequestProtocol.swift */; };
@@ -105,7 +104,6 @@
 		C7228D312A98D38700D19B07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7228D342A98D38700D19B07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7228D362A98D38700D19B07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C7228D3F2A98D41300D19B07 /* MockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockViewController.swift; sourceTree = "<group>"; };
 		C734E49D2A9922880021328C /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		C734E49F2A99232A0021328C /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		C734E4A12A9932A10021328C /* NetworkRequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestProtocol.swift; sourceTree = "<group>"; };
@@ -296,7 +294,6 @@
 				C71A139A2A9CA93200D80996 /* ViewComponents */,
 				C71A9AD62A98D70C00467E80 /* Modules */,
 				C7228D3C2A98D3A400D19B07 /* Application */,
-				C7228D412A98D44500D19B07 /* Controllers  */,
 				C71A9AE42A98E23C00467E80 /* Library */,
 				C7228D3E2A98D3D900D19B07 /* Resources */,
 				C7228D3D2A98D3CC00D19B07 /* SupportingFiles */,
@@ -330,14 +327,6 @@
 				C70105262A9CD36F00E1D406 /* FontsRes.swift */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		C7228D412A98D44500D19B07 /* Controllers  */ = {
-			isa = PBXGroup;
-			children = (
-				C7228D3F2A98D41300D19B07 /* MockViewController.swift */,
-			);
-			path = "Controllers ";
 			sourceTree = "<group>";
 		};
 		C734E49B2A9921F70021328C /* Networking */ = {
@@ -461,7 +450,6 @@
 				C71BD8A52A9E650300B1971A /* ProductModuleBuilder.swift in Sources */,
 				C71A9ADB2A98D8D900467E80 /* HomeViewController.swift in Sources */,
 				C71A9AE72A98E28500467E80 /* NetworkClient.swift in Sources */,
-				C7228D402A98D41300D19B07 /* MockViewController.swift in Sources */,
 				C71BD8B22A9E8F2800B1971A /* ProductPlaceholderView.swift in Sources */,
 				C70105202A9CC0D000E1D406 /* LazyImageView.swift in Sources */,
 				C734E4AC2A9959450021328C /* NetworkDecoderProtocol.swift in Sources */,

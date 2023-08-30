@@ -151,6 +151,7 @@ private extension ProductViewController {
         
         view.backgroundColor = Config.backgroundColor
         
+        setupNavBar()
         showPlaceholder()
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(openContactView))
@@ -255,6 +256,14 @@ private extension ProductViewController {
     func hidePlaceholder() {
         productPlaceholderView?.removeFromSuperview()
         productPlaceholderView = nil
+    }
+    
+    func setupNavBar() {
+        let backButton = UIBarButtonItem()
+        backButton.title = "Назад"
+        
+        navigationController?.navigationBar.tintColor = .label
+        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
     }
 }
 

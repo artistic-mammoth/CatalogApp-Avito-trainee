@@ -50,7 +50,7 @@ extension HomePresenter: HomePresenterProtocol {
     }
     
     func didSelectItemAt(id: String) {
-        router.openProductDetailsViewFor(id: id)
+        router.openProductDetailsFor(id: id)
     }
     
     func wantToRefresh() {

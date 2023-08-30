@@ -14,7 +14,7 @@ final class HomeRouter {
 
 // MARK: - HomeRouterProtocol
 extension HomeRouter: HomeRouterProtocol {
-    func openProductDetailsViewFor(id: String) {
+    func openProductDetailsFor(id: String) {
         let productViewController = ProductModuleBuilder.build(for: id)
         viewController?.navigationController?.pushViewController(productViewController, animated: true)
     }

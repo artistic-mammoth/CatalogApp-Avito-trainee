@@ -22,5 +22,5 @@ protocol HomeInteractorProtocol: AnyObject {
 }
 
 protocol HomeRouterProtocol: AnyObject {
-    func openProductDetailsViewFor(id: String)
+    func openProductDetailsFor(id: String)
 }
